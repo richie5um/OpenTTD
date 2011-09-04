@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -347,14 +347,11 @@
 		8C6A820510EAE4640036B749 /* dropdown.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C6A800210EAE4630036B749 /* dropdown.cpp */; };
 		8C6A820610EAE4640036B749 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C6A800510EAE4630036B749 /* window.cpp */; };
 		8C6A820E10EAE4B40036B749 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A820D10EAE4B40036B749 /* libz.dylib */; };
-		8C6A821010EAE4E40036B749 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A820F10EAE4E40036B749 /* CoreAudio.framework */; };
-		8C6A821210EAE4E40036B749 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A821110EAE4E40036B749 /* CoreGraphics.framework */; };
 		8C6A821410EAE4E40036B749 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A821310EAE4E40036B749 /* OpenGLES.framework */; };
 		8C6A821610EAE4E40036B749 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A821510EAE4E40036B749 /* QuartzCore.framework */; };
 		8C6A826F10EAE5140036B749 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A826C10EAE5140036B749 /* libfreetype.a */; };
 		8C6A827010EAE5140036B749 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A826D10EAE5140036B749 /* libpng.a */; };
 		8C6A837710EAE86F0036B749 /* dedicated_v.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C6A837510EAE86F0036B749 /* dedicated_v.cpp */; };
-		8C6A839E10EAE9FB0036B749 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A839D10EAE9FB0036B749 /* AudioToolbox.framework */; };
 		8C6A84DF10EAEBCF0036B749 /* helpers.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8C6A84DE10EAEBCF0036B749 /* helpers.mm */; };
 		8CA37C7410EAF03500650168 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CA37C7310EAF03500650168 /* icon.png */; };
 		8CAAC1621106FA0C00FED8E7 /* SDL_compat.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC0B21106FA0C00FED8E7 /* SDL_compat.m */; };
@@ -401,8 +398,6 @@
 		8CAAC18B1106FA0C00FED8E7 /* SDL_systimer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC10F1106FA0C00FED8E7 /* SDL_systimer.c */; };
 		8CAAC18C1106FA0C00FED8E7 /* Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CAAC1121106FA0C00FED8E7 /* Splash.png */; };
 		8CAAC18D1106FA0C00FED8E7 /* Splash.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC1141106FA0C00FED8E7 /* Splash.m */; };
-		8CAAC18E1106FA0C00FED8E7 /* AltAds.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC1191106FA0C00FED8E7 /* AltAds.m */; };
-		8CAAC18F1106FA0C00FED8E7 /* libAdMobDeviceNoThumb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAC11B1106FA0C00FED8E7 /* libAdMobDeviceNoThumb.a */; };
 		8CAAC1901106FA0C00FED8E7 /* jumphack.c in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC11D1106FA0C00FED8E7 /* jumphack.c */; };
 		8CAAC1911106FA0C00FED8E7 /* SDL_uikitevents.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC11F1106FA0C00FED8E7 /* SDL_uikitevents.m */; };
 		8CAAC1921106FA0C00FED8E7 /* SDL_uikitopengles.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC1211106FA0C00FED8E7 /* SDL_uikitopengles.m */; };
@@ -443,9 +438,10 @@
 		8CAAC1B51106FA0C00FED8E7 /* SDL_yuv_mmx.c in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC15F1106FA0C00FED8E7 /* SDL_yuv_mmx.c */; };
 		8CAAC1B61106FA0C00FED8E7 /* SDL_yuv_sw.c in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC1601106FA0C00FED8E7 /* SDL_yuv_sw.c */; };
 		8CAAC1B81106FA2D00FED8E7 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAAC1B71106FA2D00FED8E7 /* MainWindow.xib */; };
-		8CAAC1C61106FF0F00FED8E7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAC1C51106FF0F00FED8E7 /* AddressBook.framework */; };
-		8CAAC1CC1106FF2700FED8E7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAAC1CB1106FF2700FED8E7 /* CoreLocation.framework */; };
 		8CAAC1FF1107DCCA00FED8E7 /* SDL_uikitapplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC1FE1107DCCA00FED8E7 /* SDL_uikitapplication.m */; };
+		CFA9E6E5140BD11F0057E581 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9E6E4140BD11F0057E581 /* CoreAudio.framework */; };
+		CFA9E6F1140BD8540057E581 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9E6F0140BD8540057E581 /* AudioToolbox.framework */; };
+		CFA9E6F5140BDC2D0057E581 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9E6F4140BDC2D0057E581 /* libbz2.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1332,7 +1328,6 @@
 		8C6A800910EAE4630036B749 /* zoom_func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zoom_func.h; sourceTree = "<group>"; };
 		8C6A800A10EAE4630036B749 /* zoom_type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zoom_type.h; sourceTree = "<group>"; };
 		8C6A820D10EAE4B40036B749 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		8C6A820F10EAE4E40036B749 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		8C6A821110EAE4E40036B749 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8C6A821310EAE4E40036B749 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		8C6A821510EAE4E40036B749 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1474,7 +1469,6 @@
 		8C6A835C10EAE5300036B749 /* SDL_video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_video.h; sourceTree = "<group>"; };
 		8C6A837510EAE86F0036B749 /* dedicated_v.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dedicated_v.cpp; sourceTree = "<group>"; };
 		8C6A837610EAE86F0036B749 /* dedicated_v.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dedicated_v.h; sourceTree = "<group>"; };
-		8C6A839D10EAE9FB0036B749 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.2.1.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		8C6A84DD10EAEBCF0036B749 /* helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helpers.h; sourceTree = "<group>"; };
 		8C6A84DE10EAEBCF0036B749 /* helpers.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = helpers.mm; sourceTree = "<group>"; };
 		8CA37C7310EAF03500650168 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -1596,12 +1590,6 @@
 		8CAAC1121106FA0C00FED8E7 /* Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Splash.png; path = ../../../SDL8bit/src/video/uikit/Splash.png; sourceTree = "<group>"; };
 		8CAAC1131106FA0C00FED8E7 /* Splash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Splash.h; sourceTree = "<group>"; };
 		8CAAC1141106FA0C00FED8E7 /* Splash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Splash.m; sourceTree = "<group>"; };
-		8CAAC1161106FA0C00FED8E7 /* AdMobDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobDelegateProtocol.h; sourceTree = "<group>"; };
-		8CAAC1171106FA0C00FED8E7 /* AdMobView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobView.h; sourceTree = "<group>"; };
-		8CAAC1181106FA0C00FED8E7 /* AltAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltAds.h; sourceTree = "<group>"; };
-		8CAAC1191106FA0C00FED8E7 /* AltAds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AltAds.m; sourceTree = "<group>"; };
-		8CAAC11A1106FA0C00FED8E7 /* AltAdsSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltAdsSupport.h; sourceTree = "<group>"; };
-		8CAAC11B1106FA0C00FED8E7 /* libAdMobDeviceNoThumb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMobDeviceNoThumb.a; sourceTree = "<group>"; };
 		8CAAC11C1106FA0C00FED8E7 /* jumphack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jumphack.h; sourceTree = "<group>"; };
 		8CAAC11D1106FA0C00FED8E7 /* jumphack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jumphack.c; sourceTree = "<group>"; };
 		8CAAC11E1106FA0C00FED8E7 /* SDL_uikitevents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_uikitevents.h; sourceTree = "<group>"; };
@@ -1672,11 +1660,13 @@
 		8CAAC1601106FA0C00FED8E7 /* SDL_yuv_sw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_yuv_sw.c; sourceTree = "<group>"; };
 		8CAAC1611106FA0C00FED8E7 /* SDL_yuv_sw_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_yuv_sw_c.h; sourceTree = "<group>"; };
 		8CAAC1B71106FA2D00FED8E7 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = ../../../SDL8bit/src/video/uikit/MainWindow.xib; sourceTree = SOURCE_ROOT; };
-		8CAAC1C51106FF0F00FED8E7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.2.1.sdk/System/Library/Frameworks/AddressBook.framework; sourceTree = DEVELOPER_DIR; };
-		8CAAC1CB1106FF2700FED8E7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.2.1.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 		8CAAC1FD1107DCCA00FED8E7 /* SDL_uikitapplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_uikitapplication.h; sourceTree = "<group>"; };
 		8CAAC1FE1107DCCA00FED8E7 /* SDL_uikitapplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDL_uikitapplication.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* openttd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "openttd-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		CFA9E6E4140BD11F0057E581 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		CFA9E6EE140BD71D0057E581 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		CFA9E6F0140BD8540057E581 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		CFA9E6F4140BDC2D0057E581 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbz2.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1684,20 +1674,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFA9E6F1140BD8540057E581 /* AudioToolbox.framework in Frameworks */,
+				CFA9E6E5140BD11F0057E581 /* CoreAudio.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				8C6A820E10EAE4B40036B749 /* libz.dylib in Frameworks */,
-				8C6A821010EAE4E40036B749 /* CoreAudio.framework in Frameworks */,
-				8C6A821210EAE4E40036B749 /* CoreGraphics.framework in Frameworks */,
 				8C6A821410EAE4E40036B749 /* OpenGLES.framework in Frameworks */,
 				8C6A821610EAE4E40036B749 /* QuartzCore.framework in Frameworks */,
 				8C6A826F10EAE5140036B749 /* libfreetype.a in Frameworks */,
 				8C6A827010EAE5140036B749 /* libpng.a in Frameworks */,
-				8C6A839E10EAE9FB0036B749 /* AudioToolbox.framework in Frameworks */,
-				8CAAC18F1106FA0C00FED8E7 /* libAdMobDeviceNoThumb.a in Frameworks */,
-				8CAAC1C61106FF0F00FED8E7 /* AddressBook.framework in Frameworks */,
-				8CAAC1CC1106FF2700FED8E7 /* CoreLocation.framework in Frameworks */,
+				CFA9E6F5140BDC2D0057E581 /* libbz2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1725,6 +1712,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				CFA9E6F0140BD8540057E581 /* AudioToolbox.framework */,
 				8CAAC0B11106FA0C00FED8E7 /* Library Source */,
 				8CAAC0881106FA0C00FED8E7 /* Public Headers */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -1732,7 +1720,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				8CAAC1CB1106FF2700FED8E7 /* CoreLocation.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1770,18 +1757,18 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CFA9E6F4140BDC2D0057E581 /* libbz2.a */,
+				CFA9E6EE140BD71D0057E581 /* AudioUnit.framework */,
+				CFA9E6E4140BD11F0057E581 /* CoreAudio.framework */,
 				8C6A826C10EAE5140036B749 /* libfreetype.a */,
 				8C6A826D10EAE5140036B749 /* libpng.a */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				8C6A820D10EAE4B40036B749 /* libz.dylib */,
-				8C6A820F10EAE4E40036B749 /* CoreAudio.framework */,
 				8C6A821110EAE4E40036B749 /* CoreGraphics.framework */,
 				8C6A821310EAE4E40036B749 /* OpenGLES.framework */,
 				8C6A821510EAE4E40036B749 /* QuartzCore.framework */,
-				8C6A839D10EAE9FB0036B749 /* AudioToolbox.framework */,
-				8CAAC1C51106FF0F00FED8E7 /* AddressBook.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3435,7 +3422,6 @@
 			children = (
 				8CAAC1131106FA0C00FED8E7 /* Splash.h */,
 				8CAAC1141106FA0C00FED8E7 /* Splash.m */,
-				8CAAC1151106FA0C00FED8E7 /* AdMob */,
 				8CAAC11C1106FA0C00FED8E7 /* jumphack.h */,
 				8CAAC11D1106FA0C00FED8E7 /* jumphack.c */,
 				8CAAC11E1106FA0C00FED8E7 /* SDL_uikitevents.h */,
@@ -3460,19 +3446,6 @@
 				8CAAC1FE1107DCCA00FED8E7 /* SDL_uikitapplication.m */,
 			);
 			path = uikit;
-			sourceTree = "<group>";
-		};
-		8CAAC1151106FA0C00FED8E7 /* AdMob */ = {
-			isa = PBXGroup;
-			children = (
-				8CAAC1161106FA0C00FED8E7 /* AdMobDelegateProtocol.h */,
-				8CAAC1171106FA0C00FED8E7 /* AdMobView.h */,
-				8CAAC1181106FA0C00FED8E7 /* AltAds.h */,
-				8CAAC1191106FA0C00FED8E7 /* AltAds.m */,
-				8CAAC11A1106FA0C00FED8E7 /* AltAdsSupport.h */,
-				8CAAC11B1106FA0C00FED8E7 /* libAdMobDeviceNoThumb.a */,
-			);
-			path = AdMob;
 			sourceTree = "<group>";
 		};
 		8CAAC1301106FA0C00FED8E7 /* dummy */ = {
@@ -3513,9 +3486,16 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "openttd" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -3920,7 +3900,6 @@
 				8CAAC18A1106FA0C00FED8E7 /* SDL_timer.c in Sources */,
 				8CAAC18B1106FA0C00FED8E7 /* SDL_systimer.c in Sources */,
 				8CAAC18D1106FA0C00FED8E7 /* Splash.m in Sources */,
-				8CAAC18E1106FA0C00FED8E7 /* AltAds.m in Sources */,
 				8CAAC1901106FA0C00FED8E7 /* jumphack.c in Sources */,
 				8CAAC1911106FA0C00FED8E7 /* SDL_uikitevents.m in Sources */,
 				8CAAC1921106FA0C00FED8E7 /* SDL_uikitopengles.m in Sources */,
@@ -3976,8 +3955,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = dist.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: zod Stark";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: zod Stark";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -3985,14 +3964,19 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = openttd_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				HEADER_SEARCH_PATHS = (
+					../../projects/openttd/include,
+					"\"$(SRCROOT)/../../src/3rdparty\"/**",
+				);
 				INFOPLIST_FILE = "openttd-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
-					"\"$(SRCROOT)/Classes/AdMob\"",
-					"\"$(SRCROOT)/../../../SDL8bit/src/video/uikit/AdMob\"",
+					"\"$(SRCROOT)\"",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-fomit-frame-pointer",
 					"-fno-common",
@@ -4014,11 +3998,13 @@
 					"-DGLOBAL_DATA_DIR=get_resource_path(\\\"/\\\")",
 					"-DENABLE_AI",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = OpenTTDiPad;
-				PROVISIONING_PROFILE = "C871B27B-830C-4460-85CD-36AD1B996CBB";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C871B27B-830C-4460-85CD-36AD1B996CBB";
-				SDKROOT = iphoneos3.2;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};
@@ -4026,12 +4012,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};
