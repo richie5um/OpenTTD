@@ -1,0 +1,6 @@
+[submodule "libpng"]
+	path = libpng
+	url = git://libpng.git.sourceforge.net/gitroot/libpng/libpng
+[submodule "freetype2"]
+	path = freetype2
+	url = git://git.sv.gnu.org/freetype/freetype2.git

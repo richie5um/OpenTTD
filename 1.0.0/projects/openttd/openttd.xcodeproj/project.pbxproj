@@ -350,7 +350,6 @@
 		8C6A821410EAE4E40036B749 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A821310EAE4E40036B749 /* OpenGLES.framework */; };
 		8C6A821610EAE4E40036B749 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A821510EAE4E40036B749 /* QuartzCore.framework */; };
 		8C6A826F10EAE5140036B749 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A826C10EAE5140036B749 /* libfreetype.a */; };
-		8C6A827010EAE5140036B749 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A826D10EAE5140036B749 /* libpng.a */; };
 		8C6A837710EAE86F0036B749 /* dedicated_v.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C6A837510EAE86F0036B749 /* dedicated_v.cpp */; };
 		8C6A84DF10EAEBCF0036B749 /* helpers.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8C6A84DE10EAEBCF0036B749 /* helpers.mm */; };
 		8CA37C7410EAF03500650168 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CA37C7310EAF03500650168 /* icon.png */; };
@@ -441,7 +440,46 @@
 		CFA9E6E5140BD11F0057E581 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9E6E4140BD11F0057E581 /* CoreAudio.framework */; };
 		CFA9E6F1140BD8540057E581 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9E6F0140BD8540057E581 /* AudioToolbox.framework */; };
 		CFA9E6F5140BDC2D0057E581 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9E6F4140BDC2D0057E581 /* libbz2.a */; };
+		CFCB960014178BF100C68914 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFCB95FE14178B3F00C68914 /* libpng.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CF226EFB1417919B00A28540 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFCB95EB14178B3E00C68914 /* libpng.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BF3B10B122B1C070092AE4E;
+			remoteInfo = "libpng static (iOS Simulator & Device)";
+		};
+		CFCB95F714178B3F00C68914 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFCB95EB14178B3E00C68914 /* libpng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
+			remoteInfo = "libpng static (Mac OS X)";
+		};
+		CFCB95F914178B3F00C68914 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFCB95EB14178B3E00C68914 /* libpng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BF3B08C122B1B6A0092AE4E;
+			remoteInfo = "libpng dynamic (Mac OS X)";
+		};
+		CFCB95FB14178B3F00C68914 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFCB95EB14178B3E00C68914 /* libpng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BF3B094122B1B9B0092AE4E;
+			remoteInfo = "libpng static (iOS)";
+		};
+		CFCB95FD14178B3F00C68914 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFCB95EB14178B3E00C68914 /* libpng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BF3B10C122B1C070092AE4E;
+			remoteInfo = "libpng static (iOS Simulator & Device)";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1331,7 +1369,6 @@
 		8C6A821310EAE4E40036B749 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		8C6A821510EAE4E40036B749 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8C6A826C10EAE5140036B749 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = lib/libfreetype.a; sourceTree = "<group>"; };
-		8C6A826D10EAE5140036B749 /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = lib/libpng.a; sourceTree = "<group>"; };
 		8C6A82D310EAE52F0036B749 /* begin_code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = begin_code.h; sourceTree = "<group>"; };
 		8C6A82D410EAE52F0036B749 /* close_code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = close_code.h; sourceTree = "<group>"; };
 		8C6A82D510EAE52F0036B749 /* doxyfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = doxyfile; sourceTree = "<group>"; };
@@ -1664,6 +1701,7 @@
 		CFA9E6EE140BD71D0057E581 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		CFA9E6F0140BD8540057E581 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CFA9E6F4140BDC2D0057E581 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbz2.a; sourceTree = "<group>"; };
+		CFCB95EB14178B3E00C68914 /* libpng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpng.xcodeproj; path = ../../../libpng/projects/xcode/libpng.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1671,6 +1709,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFCB960014178BF100C68914 /* libpng.a in Frameworks */,
 				CFA9E6F1140BD8540057E581 /* AudioToolbox.framework in Frameworks */,
 				CFA9E6E5140BD11F0057E581 /* CoreAudio.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -1680,7 +1719,6 @@
 				8C6A821410EAE4E40036B749 /* OpenGLES.framework in Frameworks */,
 				8C6A821610EAE4E40036B749 /* QuartzCore.framework in Frameworks */,
 				8C6A826F10EAE5140036B749 /* libfreetype.a in Frameworks */,
-				8C6A827010EAE5140036B749 /* libpng.a in Frameworks */,
 				CFA9E6F5140BDC2D0057E581 /* libbz2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1709,7 +1747,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				CFA9E6F0140BD8540057E581 /* AudioToolbox.framework */,
+				CFCB95EB14178B3E00C68914 /* libpng.xcodeproj */,
 				8CAAC0B11106FA0C00FED8E7 /* Library Source */,
 				8CAAC0881106FA0C00FED8E7 /* Public Headers */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -1754,11 +1792,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CFA9E6F0140BD8540057E581 /* AudioToolbox.framework */,
 				CFA9E6F4140BDC2D0057E581 /* libbz2.a */,
 				CFA9E6EE140BD71D0057E581 /* AudioUnit.framework */,
 				CFA9E6E4140BD11F0057E581 /* CoreAudio.framework */,
 				8C6A826C10EAE5140036B749 /* libfreetype.a */,
-				8C6A826D10EAE5140036B749 /* libpng.a */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
@@ -3456,6 +3494,17 @@
 			path = dummy;
 			sourceTree = "<group>";
 		};
+		CFCB95EC14178B3E00C68914 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CFCB95F814178B3F00C68914 /* libpng.a */,
+				CFCB95FA14178B3F00C68914 /* libpng.dylib */,
+				CFCB95FC14178B3F00C68914 /* libpng.a */,
+				CFCB95FE14178B3F00C68914 /* libpng.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3470,6 +3519,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CF226EFC1417919B00A28540 /* PBXTargetDependency */,
 			);
 			name = openttd;
 			productName = openttd;
@@ -3493,12 +3543,49 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CFCB95EC14178B3E00C68914 /* Products */;
+					ProjectRef = CFCB95EB14178B3E00C68914 /* libpng.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* openttd */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CFCB95F814178B3F00C68914 /* libpng.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libpng.a;
+			remoteRef = CFCB95F714178B3F00C68914 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CFCB95FA14178B3F00C68914 /* libpng.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libpng.dylib;
+			remoteRef = CFCB95F914178B3F00C68914 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CFCB95FC14178B3F00C68914 /* libpng.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libpng.a;
+			remoteRef = CFCB95FB14178B3F00C68914 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CFCB95FE14178B3F00C68914 /* libpng.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libpng.a;
+			remoteRef = CFCB95FD14178B3F00C68914 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -3943,6 +4030,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		CF226EFC1417919B00A28540 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libpng static (iOS Simulator & Device)";
+			targetProxy = CF226EFB1417919B00A28540 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -3978,13 +4073,9 @@
 					"-fno-strict-aliasing",
 					"-DUNIX",
 					"-DWITH_SDL",
-					"-I/Users/me/dev/openttd/1.0.0/projects/openttd/include",
 					"-DWITH_ZLIB",
-					"-I/Users/me/dev/openttd/1.0.0/src/3rdparty/squirrel/include",
 					"-DWITH_PNG",
 					"-DWITH_FREETYPE",
-					"-I/Users/me/dev/openttd/1.0.0/projects/openttd/include/freetype2",
-					"-I/Users/me/dev/openttd/1.0.0/projects/openttd/include",
 					"-DENABLE_NETWORK",
 					"-DNDEBUG",
 					"-DWITH_PERSONAL_DIR",
