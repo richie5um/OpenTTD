@@ -3888,6 +3888,8 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = (
+					../../../freetype2/include,
+					../../../libpng,
 					../../projects/openttd/include,
 					"\"$(SRCROOT)/../../src/3rdparty\"/**",
 				);
