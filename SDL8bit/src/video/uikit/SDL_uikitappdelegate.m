@@ -93,12 +93,9 @@ int main(int argc, char **argv) {
 	[[NSFileManager defaultManager] changeCurrentDirectoryPath: [[NSBundle mainBundle] resourcePath]];
 	
   [SDLUIKitDelegate sharedAppDelegate].window = SDLUIKitApp.window;
-  
-  [SDLUIKitApp.window addSubview:splashviewcontroller.view];
-  [SDLUIKitApp.window bringSubviewToFront:splashviewcontroller.view];
   [SDLUIKitApp.window makeKeyAndVisible];
   
-	//[self performSelector:@selector(postFinishLaunch) withObject:nil afterDelay:0.0];
+  [self performSelector:@selector(postFinishLaunch) withObject:nil afterDelay:0.0];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

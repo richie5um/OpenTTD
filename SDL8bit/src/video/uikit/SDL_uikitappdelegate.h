@@ -22,13 +22,11 @@
 
 #import <UIKit/UIKit.h>
 #import "SDL_uikitopenglview.h"
-#import "Splash.h"
 
 /* *INDENT-OFF* */
 @interface SDLUIKitDelegate:NSObject<UIApplicationDelegate> {
   IBOutlet UIWindow *ibwindow;
 	SDL_WindowID windowID;
-  IBOutlet SplashViewController* splashviewcontroller;
 }
 
 @property (readwrite, retain) UIWindow *window;

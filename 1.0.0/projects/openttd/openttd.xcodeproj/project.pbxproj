@@ -397,7 +397,6 @@
 		8CAAC18A1106FA0C00FED8E7 /* SDL_timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC10C1106FA0C00FED8E7 /* SDL_timer.c */; };
 		8CAAC18B1106FA0C00FED8E7 /* SDL_systimer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC10F1106FA0C00FED8E7 /* SDL_systimer.c */; };
 		8CAAC18C1106FA0C00FED8E7 /* Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CAAC1121106FA0C00FED8E7 /* Splash.png */; };
-		8CAAC18D1106FA0C00FED8E7 /* Splash.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC1141106FA0C00FED8E7 /* Splash.m */; };
 		8CAAC1901106FA0C00FED8E7 /* jumphack.c in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC11D1106FA0C00FED8E7 /* jumphack.c */; };
 		8CAAC1911106FA0C00FED8E7 /* SDL_uikitevents.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC11F1106FA0C00FED8E7 /* SDL_uikitevents.m */; };
 		8CAAC1921106FA0C00FED8E7 /* SDL_uikitopengles.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC1211106FA0C00FED8E7 /* SDL_uikitopengles.m */; };
@@ -1588,8 +1587,6 @@
 		8CAAC10D1106FA0C00FED8E7 /* SDL_timer_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_timer_c.h; sourceTree = "<group>"; };
 		8CAAC10F1106FA0C00FED8E7 /* SDL_systimer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_systimer.c; sourceTree = "<group>"; };
 		8CAAC1121106FA0C00FED8E7 /* Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Splash.png; path = ../../../SDL8bit/src/video/uikit/Splash.png; sourceTree = "<group>"; };
-		8CAAC1131106FA0C00FED8E7 /* Splash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Splash.h; sourceTree = "<group>"; };
-		8CAAC1141106FA0C00FED8E7 /* Splash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Splash.m; sourceTree = "<group>"; };
 		8CAAC11C1106FA0C00FED8E7 /* jumphack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jumphack.h; sourceTree = "<group>"; };
 		8CAAC11D1106FA0C00FED8E7 /* jumphack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jumphack.c; sourceTree = "<group>"; };
 		8CAAC11E1106FA0C00FED8E7 /* SDL_uikitevents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_uikitevents.h; sourceTree = "<group>"; };
@@ -3420,8 +3417,6 @@
 		8CAAC1111106FA0C00FED8E7 /* uikit */ = {
 			isa = PBXGroup;
 			children = (
-				8CAAC1131106FA0C00FED8E7 /* Splash.h */,
-				8CAAC1141106FA0C00FED8E7 /* Splash.m */,
 				8CAAC11C1106FA0C00FED8E7 /* jumphack.h */,
 				8CAAC11D1106FA0C00FED8E7 /* jumphack.c */,
 				8CAAC11E1106FA0C00FED8E7 /* SDL_uikitevents.h */,
@@ -3899,7 +3894,6 @@
 				8CAAC1891106FA0C00FED8E7 /* SDL_thread.c in Sources */,
 				8CAAC18A1106FA0C00FED8E7 /* SDL_timer.c in Sources */,
 				8CAAC18B1106FA0C00FED8E7 /* SDL_systimer.c in Sources */,
-				8CAAC18D1106FA0C00FED8E7 /* Splash.m in Sources */,
 				8CAAC1901106FA0C00FED8E7 /* jumphack.c in Sources */,
 				8CAAC1911106FA0C00FED8E7 /* SDL_uikitevents.m in Sources */,
 				8CAAC1921106FA0C00FED8E7 /* SDL_uikitopengles.m in Sources */,
