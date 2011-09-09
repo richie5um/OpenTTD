@@ -350,7 +350,7 @@ bool SetFallbackFont(FreeTypeSettings *settings, const char *language_isocode, i
 	return ret == 0;
 }
 
-#elif defined(__APPLE__) && !defined(__arm__)
+#elif defined(__APPLE__) && !TARGET_OS_IPHONE
 
 #include "os/macosx/macos.h"
 #include <ApplicationServices/ApplicationServices.h>

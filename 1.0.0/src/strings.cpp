@@ -1330,7 +1330,7 @@ bool ReadLanguagePack(int lang_index)
 
 /* Win32 implementation in win32.cpp.
  * OS X implementation in os/macosx/macos.mm. */
-#if !(defined(WIN32) || defined(__APPLE__)) || (defined(__APPLE__) && defined(__arm__))
+#if !(defined(WIN32) || defined(__APPLE__))
 /** Determine the current charset based on the environment
  * First check some default values, after this one we passed ourselves
  * and if none exist return the value for $LANG

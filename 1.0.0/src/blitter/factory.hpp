@@ -96,7 +96,7 @@ public:
 #endif /* defined(WITH_COCOA) */
 #endif /* defined(DEDICATED) */
 
-#if defined(__APPLE__) && defined(__arm__)
+#if defined(__APPLE__) && TARGET_OS_IPHONE
     default_blitter = "32bpp-anim";
 #endif
 

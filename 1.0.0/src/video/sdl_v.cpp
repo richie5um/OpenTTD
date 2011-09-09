@@ -155,7 +155,7 @@ static void DrawSurfaceToScreenThread(void *)
 }
 
 static const Dimension _default_resolutions[] = {
-#if defined(__APPLE__) && defined(__arm__)
+#if defined(__APPLE__) && TARGET_OS_IPHONE
 	{ 768, 1024},
 	{1024,  768}
 #else
@@ -268,7 +268,7 @@ static bool CreateMainSurface(uint w, uint h)
 	}
 
 	/* DO NOT CHANGE TO HWSURFACE, IT DOES NOT WORK */
-#if defined(__APPLE__) && defined(__arm__)
+#if defined(__APPLE__) && TARGET_OS_IPHONE
   newscreen = SDL_CALL SDL_SetVideoMode(w, h, 32, SDL_SWSURFACE | SDL_HWPALETTE | SDL_RESIZABLE | SDL_NOFRAME);
 #else
 	newscreen = SDL_CALL SDL_SetVideoMode(w, h, bpp, SDL_SWSURFACE | SDL_HWPALETTE | (_fullscreen ? SDL_FULLSCREEN : SDL_RESIZABLE));
@@ -352,7 +352,7 @@ static const VkMapping _vk_mapping[] = {
 	AS(SDLK_KP_PERIOD,   WKC_NUM_DECIMAL),
 
 	/* Other non-letter keys */
-#if !(defined(__APPLE__) && defined(__arm__))
+#if !(defined(__APPLE__) && TARGET_OS_IPHONE)
 	AS(SDLK_SLASH,        WKC_SLASH),
 	AS(SDLK_SEMICOLON,    WKC_SEMICOLON),
 	AS(SDLK_EQUALS,       WKC_EQUALS),
@@ -362,11 +362,11 @@ static const VkMapping _vk_mapping[] = {
 #endif
 
 	AS(SDLK_QUOTE,   WKC_SINGLEQUOTE),
-#if !(defined(__APPLE__) && defined(__arm__))
+#if !(defined(__APPLE__) && TARGET_OS_IPHONE)
 	AS(SDLK_COMMA,   WKC_COMMA),
 #endif
 	AS(SDLK_MINUS,   WKC_MINUS),
-#if !(defined(__APPLE__) && defined(__arm__))
+#if !(defined(__APPLE__) && TARGET_OS_IPHONE)
 	AS(SDLK_PERIOD,  WKC_PERIOD)
 #endif
 };
@@ -607,7 +607,7 @@ void VideoDriver_SDL::MainLoop()
 		if (_exit_game) break;
 
 		mod = SDL_CALL SDL_GetModState();
-#if defined(__APPLE__) && defined(__arm__)
+#if defined(__APPLE__) && defined(TARGET_OS_MAC)
 		//keys = SDL_CALL SDL_GetKeyboardState(&numkeys);
 #else
 		keys = SDL_CALL SDL_GetKeyState(&numkeys);

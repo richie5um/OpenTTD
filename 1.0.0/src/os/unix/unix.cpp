@@ -219,7 +219,7 @@ void ShowInfo(const char *str)
 	fprintf(stderr, "%s\n", str);
 }
 
-#if !defined(__APPLE__) || defined(__arm__)
+#if !defined(__APPLE__) || TARGET_OS_IPHONE
 void ShowOSErrorBox(const char *buf, bool system)
 {
 	/* All unix systems, except OSX. Only use escape codes on a TTY. */

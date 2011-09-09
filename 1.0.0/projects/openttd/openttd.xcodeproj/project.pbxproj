@@ -436,10 +436,11 @@
 		8CAAC1B61106FA0C00FED8E7 /* SDL_yuv_sw.c in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC1601106FA0C00FED8E7 /* SDL_yuv_sw.c */; };
 		8CAAC1B81106FA2D00FED8E7 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAAC1B71106FA2D00FED8E7 /* MainWindow.xib */; };
 		8CAAC1FF1107DCCA00FED8E7 /* SDL_uikitapplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC1FE1107DCCA00FED8E7 /* SDL_uikitapplication.m */; };
+		CF2AFD7C141A4D9D001EE468 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFCB95F814178B3F00C68914 /* libpng.a */; };
+		CF2AFD83141A50AA001EE468 /* ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = CF2AFD82141A50AA001EE468 /* ios.mm */; };
 		CF8622CC1417BF7200DBBC68 /* libfreetype2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF8622C91417BEE500DBBC68 /* libfreetype2.a */; };
 		CFA9E6E5140BD11F0057E581 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9E6E4140BD11F0057E581 /* CoreAudio.framework */; };
 		CFA9E6F1140BD8540057E581 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9E6F0140BD8540057E581 /* AudioToolbox.framework */; };
-		CFCB960014178BF100C68914 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFCB95FE14178B3F00C68914 /* libpng.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1624,6 +1625,8 @@
 		8CAAC1FD1107DCCA00FED8E7 /* SDL_uikitapplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_uikitapplication.h; sourceTree = "<group>"; };
 		8CAAC1FE1107DCCA00FED8E7 /* SDL_uikitapplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDL_uikitapplication.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* openttd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "openttd-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		CF2AFD72141A454C001EE468 /* osx_stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osx_stdafx.h; sourceTree = "<group>"; };
+		CF2AFD82141A50AA001EE468 /* ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios.mm; sourceTree = "<group>"; };
 		CF8622C11417BEE400DBBC68 /* freetype2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = freetype2.xcodeproj; path = ../../../projects/freetype2/freetype2.xcodeproj; sourceTree = "<group>"; };
 		CFA9E6E4140BD11F0057E581 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		CFA9E6EE140BD71D0057E581 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
@@ -1636,8 +1639,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF2AFD7C141A4D9D001EE468 /* libpng.a in Frameworks */,
 				CF8622CC1417BF7200DBBC68 /* libfreetype2.a in Frameworks */,
-				CFCB960014178BF100C68914 /* libpng.a in Frameworks */,
 				CFA9E6F1140BD8540057E581 /* AudioToolbox.framework in Frameworks */,
 				CFA9E6E5140BD11F0057E581 /* CoreAudio.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -2626,6 +2629,8 @@
 		8C6A7EB410EAE4630036B749 /* os */ = {
 			isa = PBXGroup;
 			children = (
+				CF2AFD80141A50AA001EE468 /* ios */,
+				CF2AFD6D141A454C001EE468 /* macosx */,
 				8C6A7EBF10EAE4630036B749 /* unix */,
 			);
 			path = os;
@@ -3302,6 +3307,22 @@
 			path = dummy;
 			sourceTree = "<group>";
 		};
+		CF2AFD6D141A454C001EE468 /* macosx */ = {
+			isa = PBXGroup;
+			children = (
+				CF2AFD72141A454C001EE468 /* osx_stdafx.h */,
+			);
+			path = macosx;
+			sourceTree = "<group>";
+		};
+		CF2AFD80141A50AA001EE468 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				CF2AFD82141A50AA001EE468 /* ios.mm */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
 		CF8622C21417BEE400DBBC68 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -3853,6 +3874,7 @@
 				8C4AE2D0116F0125004C332E /* sprite.cpp in Sources */,
 				8C4AE2D1116F0125004C332E /* tilearea.cpp in Sources */,
 				8C4AE478116F087B004C332E /* tcp_http.cpp in Sources */,
+				CF2AFD83141A50AA001EE468 /* ios.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

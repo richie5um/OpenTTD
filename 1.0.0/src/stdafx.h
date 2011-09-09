@@ -12,7 +12,7 @@
 #ifndef STDAFX_H
 #define STDAFX_H
 
-#if defined(__APPLE__) && !defined(__arm__)
+#if defined(__APPLE__)
 	#include "os/macosx/osx_stdafx.h"
 #endif /* __APPLE__ */
 

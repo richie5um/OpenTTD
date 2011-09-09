@@ -37,13 +37,16 @@
 #endif
 
 #include <AvailabilityMacros.h>
+#include <TargetConditionals.h>
 
 /* Name conflict */
 #define Rect        OTTDRect
 #define Point       OTTDPoint
 #define WindowClass OTTDWindowClass
 
+#if !TARGET_OS_IPHONE
 #include <CoreServices/CoreServices.h>
+#endif
 
 #undef Rect
 #undef Point

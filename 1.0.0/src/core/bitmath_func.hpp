@@ -322,7 +322,7 @@ static FORCEINLINE T ROR(const T x, const uint8 n)
 		if (b & 1)
 
 
-#if defined(__APPLE__) && !defined(__arm__)
+#if defined(__APPLE__) && !TARGET_OS_IPHONE
 	/* Make endian swapping use Apple's macros to increase speed
 	 * (since it will use hardware swapping if available).
 	 * Even though they should return uint16 and uint32, we get
