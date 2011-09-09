@@ -1350,7 +1350,7 @@ void UndrawMouseCursor()
 
 void DrawMouseCursor()
 {
-#if defined(WINCE)
+#if defined(WINCE) || defined(TARGET_OS_IPHONE)
 	/* Don't ever draw the mouse for WinCE, as we work with a stylus */
 	return;
 #endif
