@@ -125,6 +125,12 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
 	const unsigned char* videobuffer = (unsigned char*)VideoAddress[buffercount == 0 ? 19 : buffercount - 1];
   
   SDL_Window *window = SDL_GetWindowFromID([SDLUIKitDelegate sharedAppDelegate].windowID);
+
+    // RichS: The rotation isn't called anymore, so these values are not set.
+    if ( 0 == current_width && 0 == current_height ) {
+        current_width = [UIScreen mainScreen].bounds.size.width;
+        current_height = [UIScreen mainScreen].bounds.size.height;
+    }
 	
 	if (NULL != window) 
   {
@@ -231,50 +237,57 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 
-	NSEnumerator *enumerator = [touches objectEnumerator];
-	UITouch *touch =(UITouch*)[enumerator nextObject];
-	
-	/* associate touches with mice, so long as we have slots */
-	int i;
-	int found = 0;
-	for(i=0; touch && i < MAX_SIMULTANEOUS_TOUCHES; i++) {
-	
-		/* check if this mouse is already tracking a touch */
-		if (mice[i].driverdata != NULL) {
-			continue;
-		}
-		/*	
-			mouse not associated with anything right now,
-			associate the touch with this mouse
-		*/
-		found = 1;
-		
-		/* save old mouse so we can switch back */
-		int oldMouse = SDL_SelectMouse(-1);
-		
-		/* select this slot's mouse */
-		SDL_SelectMouse(i);
-		CGPoint locationInView = [touch locationInView: self];
-		
-		/* set driver data to touch object, we'll use touch object later */
-		mice[i].driverdata = [touch retain];
-		
-		/* send moved event */
-		SDL_SendMouseMotion(i, 0, locationInView.x, locationInView.y, 0);
-		
-		/* send mouse down event */
-		SDL_SendMouseButton(i, SDL_PRESSED, SDL_BUTTON_LEFT);
-		
-		/* re-calibrate relative mouse motion */
-		SDL_GetRelativeMouseState(i, NULL, NULL);
-		
-		/* grab next touch */
-		touch = (UITouch*)[enumerator nextObject]; 
-		
-		/* switch back to our old mouse */
-		SDL_SelectMouse(oldMouse);
-		
-	}	
+    // Handler to easily cancel actions (by pressing with two fingers.
+    if ( 1 < [event.allTouches count] ) {
+        SDL_SendKeyboardKey( 0, SDL_PRESSED, SDL_SCANCODE_ESCAPE);
+		SDL_SendKeyboardKey( 0, SDL_RELEASED, SDL_SCANCODE_ESCAPE);
+        
+        [self touchesEnded: touches withEvent: event];
+    } else {
+        NSEnumerator *enumerator = [touches objectEnumerator];
+        UITouch *touch =(UITouch*)[enumerator nextObject];
+        
+        /* associate touches with mice, so long as we have slots */
+        int i;
+        int found = 0;
+        for(i=0; touch && i < MAX_SIMULTANEOUS_TOUCHES; i++) {
+        
+            /* check if this mouse is already tracking a touch */
+            if (mice[i].driverdata != NULL) {
+                continue;
+            }
+            /*	
+                mouse not associated with anything right now,
+                associate the touch with this mouse
+            */
+            found = 1;
+            
+            /* save old mouse so we can switch back */
+            int oldMouse = SDL_SelectMouse(-1);
+            
+            /* select this slot's mouse */
+            SDL_SelectMouse(i);
+            CGPoint locationInView = [touch locationInView: self];
+            
+            /* set driver data to touch object, we'll use touch object later */
+            mice[i].driverdata = [touch retain];
+            
+            /* send moved event */
+            SDL_SendMouseMotion(i, 0, locationInView.x, locationInView.y, 0);
+            
+            /* send mouse down event */
+            SDL_SendMouseButton(i, SDL_PRESSED, SDL_BUTTON_LEFT);
+            
+            /* re-calibrate relative mouse motion */
+            SDL_GetRelativeMouseState(i, NULL, NULL);
+            
+            /* grab next touch */
+            touch = (UITouch*)[enumerator nextObject]; 
+            
+            /* switch back to our old mouse */
+            SDL_SelectMouse(oldMouse);
+        }
+    }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {

@@ -31,6 +31,8 @@
 }
 @end
 
+// RichS: Removing the multiple mice code to enable a 'double-touch-to-cancel-action'
+#undef SDL_IPHONE_MULTIPLE_MICE
 #if SDL_IPHONE_MULTIPLE_MICE
 #define MAX_SIMULTANEOUS_TOUCHES 5
 #else

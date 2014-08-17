@@ -45,7 +45,7 @@ const char _openttd_build_date[] = __DATE__ " " __TIME__;
  * (compiling from sources without any version control software)
  * and 2 is for modified revision.
  */
-const byte _openttd_revision_modified = 0;
+const byte _openttd_revision_modified = 1;
 
 /**
  * The NewGRF revision of OTTD:
@@ -66,5 +66,5 @@ const uint32 _openttd_newgrf_version = 1 << 28 | 0 << 24 | 0 << 20 | 1 << 19 | (
 /**
  * Variable used by MorphOS to show the version.
  */
-extern const char morphos_versions_tag[] = "$VER: OpenTTD 1.0.0 (09.04.10) OpenTTD Team [MorphOS, PowerPC]";
+extern const char morphos_versions_tag[] = "$VER: OpenTTD 1.0.0 (15.08.14) OpenTTD Team [MorphOS, PowerPC]";
 #endif

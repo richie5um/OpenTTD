@@ -38,7 +38,7 @@ typedef bool (AIModeProc)();
 class AIObject : public SimpleCountedObject {
 friend void CcAI(const CommandCost &result, TileIndex tile, uint32 p1, uint32 p2);
 friend class AIInstance;
-protected:
+public:
 	/**
 	 * Executes a raw DoCommand for the AI.
 	 */

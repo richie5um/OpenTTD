@@ -436,6 +436,7 @@
 		8CAAC1B61106FA0C00FED8E7 /* SDL_yuv_sw.c in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC1601106FA0C00FED8E7 /* SDL_yuv_sw.c */; };
 		8CAAC1B81106FA2D00FED8E7 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAAC1B71106FA2D00FED8E7 /* MainWindow.xib */; };
 		8CAAC1FF1107DCCA00FED8E7 /* SDL_uikitapplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC1FE1107DCCA00FED8E7 /* SDL_uikitapplication.m */; };
+		BA67081619A04336001F2A3A /* RichS_Hack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA67081419A04336001F2A3A /* RichS_Hack.cpp */; };
 		CF2AFD7C141A4D9D001EE468 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFCB95F814178B3F00C68914 /* libpng.a */; };
 		CF2AFD83141A50AA001EE468 /* ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = CF2AFD82141A50AA001EE468 /* ios.mm */; };
 		CF8622CC1417BF7200DBBC68 /* libfreetype2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF8622C91417BEE500DBBC68 /* libfreetype2.a */; };
@@ -1625,6 +1626,8 @@
 		8CAAC1FD1107DCCA00FED8E7 /* SDL_uikitapplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_uikitapplication.h; sourceTree = "<group>"; };
 		8CAAC1FE1107DCCA00FED8E7 /* SDL_uikitapplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDL_uikitapplication.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* openttd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "openttd-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		BA67081419A04336001F2A3A /* RichS_Hack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RichS_Hack.cpp; sourceTree = "<group>"; };
+		BA67081519A04336001F2A3A /* RichS_Hack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichS_Hack.h; sourceTree = "<group>"; };
 		CF2AFD72141A454C001EE468 /* osx_stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osx_stdafx.h; sourceTree = "<group>"; };
 		CF2AFD82141A50AA001EE468 /* ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios.mm; sourceTree = "<group>"; };
 		CF8622C11417BEE400DBBC68 /* freetype2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = freetype2.xcodeproj; path = ../../../projects/freetype2/freetype2.xcodeproj; sourceTree = "<group>"; };
@@ -2221,6 +2224,8 @@
 				8C6A7C7E10EAE4620036B749 /* squtils.h */,
 				8C6A7C7F10EAE4620036B749 /* sqvm.cpp */,
 				8C6A7C8010EAE4620036B749 /* sqvm.h */,
+				BA67081419A04336001F2A3A /* RichS_Hack.cpp */,
+				BA67081519A04336001F2A3A /* RichS_Hack.h */,
 			);
 			path = squirrel;
 			sourceTree = "<group>";
@@ -3371,6 +3376,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = D5C4Q69MRF;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "openttd" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -3875,6 +3885,7 @@
 				8C4AE2D1116F0125004C332E /* tilearea.cpp in Sources */,
 				8C4AE478116F087B004C332E /* tcp_http.cpp in Sources */,
 				CF2AFD83141A50AA001EE468 /* ios.mm in Sources */,
+				BA67081619A04336001F2A3A /* RichS_Hack.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3908,7 +3919,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = openttd_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					../../../freetype2/include,
 					../../../libpng,
@@ -3916,7 +3927,7 @@
 					"\"$(SRCROOT)/../../src/3rdparty\"/**",
 				);
 				INFOPLIST_FILE = "openttd-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",

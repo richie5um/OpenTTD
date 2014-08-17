@@ -21,7 +21,7 @@
 #endif
 
 /* this function is a lightly modified version of some code from Apple's developer homepage to detect G5 CPUs at runtime */
-main()
+int main()
 {
 	host_basic_info_data_t hostInfo;
 	mach_msg_type_number_t infoCount;
@@ -35,4 +35,6 @@ main()
 			(hostInfo.cpu_subtype == CPU_SUBTYPE_POWERPC_970));
 	 if (is_G5)
 		 printf("1");
+
+   return 0;
 }

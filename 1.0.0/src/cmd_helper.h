@@ -25,6 +25,8 @@ template<> struct ExtractBits<Axis>          { static const uint Count =  1; };
 template<> struct ExtractBits<DiagDirection> { static const uint Count =  2; };
 template<> struct ExtractBits<RoadBits>      { static const uint Count =  4; };
 
+template <typename T>
+static FORCEINLINE uint GB(const T x, const uint8 s, const uint8 n);
 
 template<typename T, uint N, typename U> static inline T Extract(U v)
 {

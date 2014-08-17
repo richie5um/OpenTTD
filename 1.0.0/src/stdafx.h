@@ -389,7 +389,8 @@ void NORETURN CDECL error(const char *str, ...) WARN_FORMAT(1, 2);
 #endif
 
 #if !defined(MAX_PATH)
-	#define MAX_PATH 260
+	//#define MAX_PATH 260
+    #define MAX_PATH 1024
 #endif
 
 /**
