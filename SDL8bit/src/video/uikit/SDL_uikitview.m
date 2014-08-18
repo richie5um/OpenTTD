@@ -62,7 +62,7 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
     viewSize = CGRectMake(0,0, 1024, 768);
     
     SDL_uikitview *uikitview = [[SDL_uikitview alloc] initWithFrame:viewSize];
-    uikitview.layer.borderColor = [UIColor redColor].CGColor;
+    uikitview.layer.borderColor = [UIColor lightGrayColor].CGColor;
     uikitview.layer.borderWidth = 1.0f;
     //[uikitview setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
     self.view = uikitview;
@@ -72,7 +72,7 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
                                                                                  action:@selector(handleMultiTap:)];
     tapGesture.numberOfTapsRequired = 2;
     tapGesture.cancelsTouchesInView = YES;
-    tapGesture.delaysTouchesBegan = NO;
+    tapGesture.delaysTouchesBegan = YES;
     [self.view addGestureRecognizer:tapGesture];
     
     /*
