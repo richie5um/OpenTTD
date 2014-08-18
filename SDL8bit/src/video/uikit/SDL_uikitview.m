@@ -71,8 +71,8 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(handleMultiTap:)];
     tapGesture.numberOfTapsRequired = 2;
-    tapGesture.cancelsTouchesInView = YES;
-    tapGesture.delaysTouchesBegan = YES;
+    tapGesture.cancelsTouchesInView = NO;
+    tapGesture.delaysTouchesBegan = NO;
     [self.view addGestureRecognizer:tapGesture];
     
     /*
