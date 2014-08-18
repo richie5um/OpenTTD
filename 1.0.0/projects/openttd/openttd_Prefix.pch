@@ -8,5 +8,10 @@
 #endif
 
 #define APPSTORE 1
+//#define IPAD_1024 1024
+//#define IPAD_768 768
+
+#define IPAD_1024 512
+#define IPAD_768 384
 
 #import "helpers.h"
