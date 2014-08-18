@@ -64,17 +64,16 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
     SDL_uikitview *uikitview = [[SDL_uikitview alloc] initWithFrame:viewSize];
     uikitview.layer.borderColor = [UIColor redColor].CGColor;
     uikitview.layer.borderWidth = 1.0f;
-    uikitview.openTTDScaleFactor = 1.0;
     //[uikitview setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
     self.view = uikitview;
     [uikitview release];
     
-     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
-     action:@selector(handleMultiTap:)];
-     tapGesture.numberOfTapsRequired = 2;
-     tapGesture.cancelsTouchesInView = NO;
-     tapGesture.delaysTouchesBegan = NO;
-     [self.view addGestureRecognizer:tapGesture];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(handleMultiTap:)];
+    tapGesture.numberOfTapsRequired = 2;
+    tapGesture.cancelsTouchesInView = YES;
+    tapGesture.delaysTouchesBegan = NO;
+    [self.view addGestureRecognizer:tapGesture];
     
     /*
      UIPinchGestureRecognizer* pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self
@@ -107,7 +106,13 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
     } else {
         scale= 1.0;
     }
+    
+    current_width = ( IPAD_1024 * 2 ) / scale;
+    current_height = ( IPAD_768 * 2 ) / scale;
+    
     ((SDL_uikitview*)self.view).openTTDScaleFactor = scale;
+    
+    [((SDL_uikitview*)self.view) checkOrientation];
 }
 
 - (void)dealloc
@@ -138,8 +143,8 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
     const int buffercount = VideoAddressCount;
 	const unsigned char* videobuffer = (unsigned char*)VideoAddress[buffercount == 0 ? 19 : buffercount - 1];
     
-    NSLog( @"ViewSize: %@", NSStringFromCGRect(self.frame));
-    NSLog( @"MainSize: %@", NSStringFromCGRect([UIScreen mainScreen].bounds));
+    //NSLog( @"ViewSize: %@", NSStringFromCGRect(self.frame));
+    //NSLog( @"MainSize: %@", NSStringFromCGRect([UIScreen mainScreen].bounds));
     
     SDL_Window *window = SDL_GetWindowFromID([SDLUIKitDelegate sharedAppDelegate].windowID);
     
@@ -189,7 +194,7 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
                                            );
     
     CGContextTranslateCTM(ctx, 0.0f, (float)h);
-    CGContextScaleCTM(ctx, self.openTTDScaleFactor, -self.openTTDScaleFactor);
+    CGContextScaleCTM(ctx, 1.0f, -1.0f);
     CGContextSetInterpolationQuality(ctx, kCGInterpolationNone);
     CGContextDrawImage( ctx, CGRectMake(0, 0, (float)w, (float)h), renderImage );
     
@@ -228,6 +233,8 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
     [self setCenter:CGPointMake(frameSize.width/2.0, frameSize.height/2.0)];
     [self setCenter:CGPointMake(frameSize.width/2.0, frameSize.height/2.0)];
     
+    _openTTDScaleFactor = 1.0;
+    
     [self checkOrientation];
     
 	return self;
@@ -244,18 +251,23 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
     }
     else if(true || UIDeviceOrientationIsLandscape(deviceOrientation))
     {
-        current_width = IPAD_1024; //[UIScreen mainScreen].bounds.size.height;
-        current_height = IPAD_768; //[UIScreen mainScreen].bounds.size.width;
+        //current_width = IPAD_1024;
+        //current_height = IPAD_768;
+        
+        current_width = ( IPAD_1024 * 2.0 ) / self.openTTDScaleFactor; //[UIScreen mainScreen].bounds.size.height;
+        current_height = ( IPAD_768 * 2.0 ) / self.openTTDScaleFactor; //[UIScreen mainScreen].bounds.size.width;
         
         if(current_width > current_height)
         {
-            CGAffineTransform transform = self.transform;
+            CGAffineTransform transform = CGAffineTransformIdentity; //self.transform;
             CGPoint center = CGPointMake(768.0 / 2.0, 1024.0 / 2.0);
             self.center = center;
             // Rotate the view around its new center point.
             transform = CGAffineTransformRotate(transform, ((deviceOrientation == UIDeviceOrientationLandscapeLeft ? 1.0 : 3.0) * M_PI / 2.0));
-            transform = CGAffineTransformScale(transform, 2.0, 2.0);
-            transform = CGAffineTransformTranslate(transform, current_width/2, current_height/2);
+            transform = CGAffineTransformScale(transform, self.openTTDScaleFactor, self.openTTDScaleFactor);
+            if ( 1.0 != self.openTTDScaleFactor ) {
+                transform = CGAffineTransformTranslate(transform, IPAD_1024/2, IPAD_768/2);
+            }
             
             self.transform = transform;
             //self.frame = CGRectMake(0.0, 0.0, 1024.0, 768.0);
