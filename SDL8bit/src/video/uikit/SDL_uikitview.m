@@ -47,53 +47,67 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  
-  [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-  
-  sharedSDL_uikitviewcontroller = self;
-  
-  return self;
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    
+    sharedSDL_uikitviewcontroller = self;
+    
+    return self;
 }
 
 - (void)loadView
 {
-  SDL_uikitview *uikitview = [[SDL_uikitview alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  [uikitview setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
-  self.view = uikitview;
-  [uikitview release];
+    CGRect viewSize = [UIScreen mainScreen].bounds;
+    viewSize = CGRectMake(0,0, 1024, 768);
+    
+    SDL_uikitview *uikitview = [[SDL_uikitview alloc] initWithFrame:viewSize];
+    uikitview.layer.borderColor = [UIColor redColor].CGColor;
+    uikitview.layer.borderWidth = 1.0f;
+    uikitview.openTTDScaleFactor = 1.0;
+    //[uikitview setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
+    self.view = uikitview;
+    [uikitview release];
+    
+     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+     action:@selector(handleMultiTap:)];
+     tapGesture.numberOfTapsRequired = 2;
+     tapGesture.cancelsTouchesInView = NO;
+     tapGesture.delaysTouchesBegan = NO;
+     [self.view addGestureRecognizer:tapGesture];
+    
+    /*
+     UIPinchGestureRecognizer* pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self
+     action:@selector(handlePinch:)];
+     pinchGesture.cancelsTouchesInView = YES;
+     pinchGesture.delaysTouchesBegan = YES;
+     [self.view addGestureRecognizer:pinchGesture];
+     */
+    
+    
+    /*
+     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+     action:@selector(handleTap:)];
+     [self.view addGestureRecognizer:gestureRecognizer];
+     gestureRecognizer.cancelsTouchesInView = NO;  // this prevents the gesture recognizers to 'block' touches
+     */
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-  if(UIInterfaceOrientationIsPortrait(interfaceOrientation))
-  {
-    current_width = [UIScreen mainScreen].bounds.size.width;
-    current_height = [UIScreen mainScreen].bounds.size.height;
-  }
-  else 
-  {
-    current_width = [UIScreen mainScreen].bounds.size.height;
-    current_height = [UIScreen mainScreen].bounds.size.width;
-  }
-  
-  // Doublecheck orientation since this function gets called twice during init and will overwrite manual checks
-  if(sharedSDL_uikitview != nil)
-  {
-    static int checkedOrientation = 0;
-    if(checkedOrientation < 2)
-    {
-      checkedOrientation++;
-      if(checkedOrientation == 2)
-      {
-        [sharedSDL_uikitview checkOrientation];
-        // Finally a chance to stop orientation notifications
-        [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
-      }
+
+- (void)handlePinch:(UIGestureRecognizer *)gestureRecognizer {
+}
+
+- (void)handleMultiTap:(UIGestureRecognizer *)gestureRecognizer {
+    
+    NSLog( @"DoubleTap!");
+    
+    CGFloat scale = ((SDL_uikitview*)self.view).openTTDScaleFactor;
+    if ( 1.0 == scale ) {
+        scale = 2.0;
+    } else {
+        scale= 1.0;
     }
-  }
-  
-  return YES;
+    ((SDL_uikitview*)self.view).openTTDScaleFactor = scale;
 }
 
 - (void)dealloc
@@ -115,128 +129,143 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
 
 - (void)drawRect:(CGRect)rect
 {
-  
+    
 }
 
 - (void) drawLayer: (CALayer*) layer
          inContext: (CGContextRef) ctx
-{ 
-  const int buffercount = VideoAddressCount;
+{
+    const int buffercount = VideoAddressCount;
 	const unsigned char* videobuffer = (unsigned char*)VideoAddress[buffercount == 0 ? 19 : buffercount - 1];
-  
-  SDL_Window *window = SDL_GetWindowFromID([SDLUIKitDelegate sharedAppDelegate].windowID);
-
+    
+    NSLog( @"ViewSize: %@", NSStringFromCGRect(self.frame));
+    NSLog( @"MainSize: %@", NSStringFromCGRect([UIScreen mainScreen].bounds));
+    
+    SDL_Window *window = SDL_GetWindowFromID([SDLUIKitDelegate sharedAppDelegate].windowID);
+    
     // RichS: The rotation isn't called anymore, so these values are not set.
     if ( 0 == current_width && 0 == current_height ) {
         current_width = [UIScreen mainScreen].bounds.size.width;
         current_height = [UIScreen mainScreen].bounds.size.height;
+        
+        window->w = current_width;
+        window->h = current_height;
+        SDL_OnWindowResized(window);
     }
 	
-	if (NULL != window) 
-  {
-    if (!(window->flags & SDL_WINDOW_FULLSCREEN) && !(current_width == window->w && current_height == window->h)) 
+	if (NULL != window)
     {
-      window->w = current_width;
-      window->h = current_height;
-      SDL_OnWindowResized(window);
-      VideoAddressCount = 0;
-      memset(VideoAddress, 0, 20*1024*768*4);
+        if (!(window->flags & SDL_WINDOW_FULLSCREEN) && !(current_width == window->w && current_height == window->h))
+        {
+            window->w = current_width;
+            window->h = current_height;
+            SDL_OnWindowResized(window);
+            VideoAddressCount = 0;
+            memset(VideoAddress, 0, 20*1024*768*4);
+        }
     }
-  }
-  else 
-  {
-    return;
-  }
-
-  const int w = current_width;
-  const int h = current_height;
-  const int bufferlength = w*h;
-  
-  
-  CGImageRef renderImage = CGImageCreate(
-                                         w,
-                                         h,
-                                         8,
-                                         32,
-                                         w * 4,
-                                         CGColorSpaceCreateDeviceRGB(),
-                                         (kCGBitmapByteOrder32Host | kCGImageAlphaNoneSkipFirst),
-                                         CGDataProviderCreateWithData( NULL, videobuffer, bufferlength * 4, NULL ),
-                                         NULL,
-                                         0,
-                                         kCGRenderingIntentDefault
-                                         );
-  
-  CGContextTranslateCTM(ctx, 0.0f, (float)h);
-  CGContextScaleCTM(ctx, 1.0f, -1.0f);
-  CGContextSetInterpolationQuality(ctx, kCGInterpolationNone);
-  CGContextDrawImage( ctx, CGRectMake(0, 0, (float)w, (float)h), renderImage );
-  
-  CGImageRelease(renderImage);
-  /*
-   free(tempData);
-   */
-  // UIGraphicsEndImageContext();
+    else
+    {
+        return;
+    }
+    
+    const int w = current_width;
+    const int h = current_height;
+    const int bufferlength = w*h;
+    
+    
+    CGImageRef renderImage = CGImageCreate(
+                                           w,
+                                           h,
+                                           8,
+                                           32,
+                                           w * 4,
+                                           CGColorSpaceCreateDeviceRGB(),
+                                           (kCGBitmapByteOrder32Host | kCGImageAlphaNoneSkipFirst),
+                                           CGDataProviderCreateWithData( NULL, videobuffer, bufferlength * 4, NULL ),
+                                           NULL,
+                                           0,
+                                           kCGRenderingIntentDefault
+                                           );
+    
+    CGContextTranslateCTM(ctx, 0.0f, (float)h);
+    CGContextScaleCTM(ctx, self.openTTDScaleFactor, -self.openTTDScaleFactor);
+    CGContextSetInterpolationQuality(ctx, kCGInterpolationNone);
+    CGContextDrawImage( ctx, CGRectMake(0, 0, (float)w, (float)h), renderImage );
+    
+    CGImageRelease(renderImage);
+    /*
+     free(tempData);
+     */
+    // UIGraphicsEndImageContext();
 }
 
 - (id)initWithFrame:(CGRect)frame {
-
+    
 	self = [super initWithFrame: frame];
 	
-  sharedSDL_uikitview = self;
-  
+    sharedSDL_uikitview = self;
+    
 #if SDL_IPHONE_KEYBOARD
 	[self initializeKeyboard];
-#endif	
-
+#endif
+    
 	int i;
 	for (i=0; i<MAX_SIMULTANEOUS_TOUCHES; i++) {
         mice[i].id = i;
 		mice[i].driverdata = NULL;
 		SDL_AddMouse(&mice[i], "Mouse", 0, 0, 1);
 	}
-  self.opaque = YES;
-  self.clearsContextBeforeDrawing = NO;
+    self.opaque = YES;
+    self.clearsContextBeforeDrawing = NO;
 	self.multipleTouchEnabled = YES;
-  [[self layer] setMinificationFilter:kCAFilterNearest];
-  [[self layer] setMagnificationFilter:kCAFilterNearest];
-  [[self layer] setOpaque: YES];
-  //[self setCenter:CGPointMake(frame.size.width/2.0, frame.size.height/2.0)];
-
-  //[self checkOrientation];
-  
+    [[self layer] setMinificationFilter:kCAFilterNearest];
+    [[self layer] setMagnificationFilter:kCAFilterNearest];
+    [[self layer] setOpaque: YES];
+    
+    CGSize frameSize = frame.size;
+    frameSize = CGSizeMake(IPAD_1024, IPAD_768);
+    [self setCenter:CGPointMake(frameSize.width/2.0, frameSize.height/2.0)];
+    [self setCenter:CGPointMake(frameSize.width/2.0, frameSize.height/2.0)];
+    
+    [self checkOrientation];
+    
 	return self;
-
+    
 }
 
 - (void)checkOrientation
 {
-  UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
-  if(UIDeviceOrientationIsPortrait(deviceOrientation))
-  {
-    current_width = [UIScreen mainScreen].bounds.size.width;
-    current_height = [UIScreen mainScreen].bounds.size.height;
-  }
-  else if(UIDeviceOrientationIsLandscape(deviceOrientation))
-  {
-    current_width = [UIScreen mainScreen].bounds.size.height;
-    current_height = [UIScreen mainScreen].bounds.size.width;
-    
-    if(current_width > current_height)
+    UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
+    if(UIDeviceOrientationIsPortrait(deviceOrientation))
     {
-      CGAffineTransform transform = self.transform;
-      CGPoint center = CGPointMake(768.0 / 2.0, 1024.0 / 2.0);
-      self.center = center;
-      // Rotate the view around its new center point.
-      transform = CGAffineTransformRotate(transform, ((deviceOrientation == UIDeviceOrientationLandscapeLeft ? 1.0 : 3.0) * M_PI / 2.0));
-      self.transform = transform;
-      self.frame = CGRectMake(0.0, 0.0, 1024.0, 768.0);
+        current_width = [UIScreen mainScreen].bounds.size.width;
+        current_height = [UIScreen mainScreen].bounds.size.height;
     }
-  }
+    else if(true || UIDeviceOrientationIsLandscape(deviceOrientation))
+    {
+        current_width = IPAD_1024; //[UIScreen mainScreen].bounds.size.height;
+        current_height = IPAD_768; //[UIScreen mainScreen].bounds.size.width;
+        
+        if(current_width > current_height)
+        {
+            CGAffineTransform transform = self.transform;
+            CGPoint center = CGPointMake(768.0 / 2.0, 1024.0 / 2.0);
+            self.center = center;
+            // Rotate the view around its new center point.
+            transform = CGAffineTransformRotate(transform, ((deviceOrientation == UIDeviceOrientationLandscapeLeft ? 1.0 : 3.0) * M_PI / 2.0));
+            transform = CGAffineTransformScale(transform, 2.0, 2.0);
+            transform = CGAffineTransformTranslate(transform, current_width/2, current_height/2);
+            
+            self.transform = transform;
+            //self.frame = CGRectMake(0.0, 0.0, 1024.0, 768.0);
+            self.bounds = CGRectMake(0.0, 0.0, 1024.0, 768.0);
+        }
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-
+    
     // Handler to easily cancel actions (by pressing with two fingers.
     if ( 1 < [event.allTouches count] ) {
         SDL_SendKeyboardKey( 0, SDL_PRESSED, SDL_SCANCODE_ESCAPE);
@@ -251,15 +280,15 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
         int i;
         int found = 0;
         for(i=0; touch && i < MAX_SIMULTANEOUS_TOUCHES; i++) {
-        
+            
             /* check if this mouse is already tracking a touch */
             if (mice[i].driverdata != NULL) {
                 continue;
             }
-            /*	
-                mouse not associated with anything right now,
-                associate the touch with this mouse
-            */
+            /*
+             mouse not associated with anything right now,
+             associate the touch with this mouse
+             */
             found = 1;
             
             /* save old mouse so we can switch back */
@@ -282,7 +311,7 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
             SDL_GetRelativeMouseState(i, NULL, NULL);
             
             /* grab next touch */
-            touch = (UITouch*)[enumerator nextObject]; 
+            touch = (UITouch*)[enumerator nextObject];
             
             /* switch back to our old mouse */
             SDL_SelectMouse(oldMouse);
@@ -314,10 +343,10 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
 	/*
-		this can happen if the user puts more than 5 touches on the screen
-		at once, or perhaps in other circumstances.  Usually (it seems)
-		all active touches are canceled.
-	*/
+     this can happen if the user puts more than 5 touches on the screen
+     at once, or perhaps in other circumstances.  Usually (it seems)
+     all active touches are canceled.
+     */
 	[self touchesEnded: touches withEvent: event];
 }
 
@@ -343,8 +372,8 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
 }
 
 /*
-	---- Keyboard related functionality below this line ----
-*/
+ ---- Keyboard related functionality below this line ----
+ */
 #if SDL_IPHONE_KEYBOARD
 
 /* Is the iPhone virtual keyboard visible onscreen? */
@@ -354,11 +383,11 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
 
 /* Set ourselves up as a UITextFieldDelegate */
 - (void)initializeKeyboard {
-		
+    
 	textField = [[[UITextField alloc] initWithFrame: CGRectZero] autorelease];
 	textField.delegate = self;
 	/* placeholder so there is something to delete! */
-	textField.text = @" ";	
+	textField.text = @" ";
 	
 	/* set UITextInputTrait properties, mostly to defaults */
 	textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -367,7 +396,7 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
 	textField.keyboardAppearance = UIKeyboardAppearanceDefault;
 	textField.keyboardType = UIKeyboardTypeDefault;
 	textField.returnKeyType = UIReturnKeyDefault;
-	textField.secureTextEntry = NO;	
+	textField.secureTextEntry = NO;
 	
 	textField.hidden = YES;
 	keyboardVisible = NO;
@@ -406,7 +435,7 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
 	}
 	else {
 		/* go through all the characters in the string we've been sent
-		   and convert them to key presses */
+         and convert them to key presses */
 		int i;
 		for (i=0; i<[string length]; i++) {
 			
@@ -436,7 +465,7 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
 			if (mod & KMOD_SHIFT) {
 				/* If character uses shift, press shift back up */
 				SDL_SendKeyboardKey( 0, SDL_RELEASED, SDL_SCANCODE_LSHIFT);
-			}			
+			}
 		}
 	}
 	return NO; /* don't allow the edit! (keep placeholder text there) */
@@ -488,7 +517,7 @@ int SDL_iPhoneKeyboardHide(SDL_WindowID windowID) {
 	if (NULL == window) {
 		SDL_SetError("Window does not exist");
 		return -1;
-	}	
+	}
 	
 	data = (SDL_WindowData *)window->driverdata;
 	view = data->view;
@@ -512,7 +541,7 @@ SDL_bool SDL_iPhoneKeyboardIsShown(SDL_WindowID windowID) {
 	if (NULL == window) {
 		SDL_SetError("Window does not exist");
 		return -1;
-	}	
+	}
 	
 	data = (SDL_WindowData *)window->driverdata;
 	view = data->view;
@@ -535,7 +564,7 @@ int SDL_iPhoneKeyboardToggle(SDL_WindowID windowID) {
 	if (NULL == window) {
 		SDL_SetError("Window does not exist");
 		return -1;
-	}	
+	}
 	
 	data = (SDL_WindowData *)window->driverdata;
 	view = data->view;

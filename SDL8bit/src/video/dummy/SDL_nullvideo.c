@@ -111,8 +111,8 @@ DUMMY_VideoInit(_THIS)
 
     /* Use a fake 32-bpp desktop mode */
     mode.format = SDL_PIXELFORMAT_RGB888;
-    mode.w = 1024;
-    mode.h = 768;
+    mode.w = IPAD_1024;
+    mode.h = IPAD_768;
     mode.refresh_rate = 0;
     mode.driverdata = NULL;
     if (SDL_AddBasicVideoDisplay(&mode) < 0) {

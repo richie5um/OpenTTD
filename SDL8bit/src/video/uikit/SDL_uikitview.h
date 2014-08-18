@@ -29,6 +29,9 @@
 @interface SDL_uikitviewcontroller : UIViewController 
 {
 }
+
+@property (assign) BOOL zoomed;
+
 @end
 
 // RichS: Removing the multiple mice code to enable a 'double-touch-to-cancel-action'
@@ -41,9 +44,9 @@
 
 /* *INDENT-OFF* */
 #if SDL_IPHONE_KEYBOARD
-@interface SDL_uikitview : UIView<UITextFieldDelegate> {
+@interface SDL_uikitview : UIScrollView<UITextFieldDelegate, UIGestureRecognizerDelegate> {
 #else
-@interface SDL_uikitview : UIView {
+@interface SDL_uikitview : UIScrollView {
 #endif
 		
 	SDL_Mouse mice[MAX_SIMULTANEOUS_TOUCHES];
@@ -54,6 +57,9 @@
 #endif	
 	
 }
+    
+@property (assign) CGFloat openTTDScaleFactor;
+    
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;

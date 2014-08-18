@@ -156,6 +156,8 @@ static void DrawSurfaceToScreenThread(void *)
 
 static const Dimension _default_resolutions[] = {
 #if defined(__APPLE__) && TARGET_OS_IPHONE
+	{ 768/2, 1024/2},
+	{1024/2,  768/2},
 	{ 768, 1024},
 	{1024,  768}
 #else

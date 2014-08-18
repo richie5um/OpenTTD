@@ -108,8 +108,8 @@ UIKit_VideoInit(_THIS)
   SDL_DisplayMode mode;
   
   mode.format = SDL_PIXELFORMAT_ARGB8888;
-  mode.w = 768;
-  mode.h = 1024;
+  mode.w = IPAD_768;
+  mode.h = IPAD_1024;
   mode.refresh_rate = 0;
   mode.driverdata = NULL;
   if (SDL_AddBasicVideoDisplay(&mode) < 0) {
@@ -119,8 +119,8 @@ UIKit_VideoInit(_THIS)
 
   SDL_zero(mode);
   mode.format = SDL_PIXELFORMAT_ARGB8888;
-  mode.w = 1024;
-  mode.h = 768;
+  mode.w = IPAD_1024;
+  mode.h = IPAD_768;
   mode.refresh_rate = 0;
   mode.driverdata = NULL;
   SDL_AddDisplayMode(&_this->displays[0], &mode);
