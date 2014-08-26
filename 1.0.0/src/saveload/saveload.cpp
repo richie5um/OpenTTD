@@ -1901,7 +1901,7 @@ SaveOrLoadResult SaveOrLoad(const char *filename, int mode, Subdirectory sb, boo
 
 				SaveOrLoadResult result = SaveFileToDisk(false);
 				SaveFileDone();
-
+                
 				return result;
 			}
 		} else { // LOAD game

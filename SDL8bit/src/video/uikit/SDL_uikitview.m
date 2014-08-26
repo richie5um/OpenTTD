@@ -32,6 +32,9 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/CALayer.h>
+#import <Dropbox/Dropbox.h>
+
+#define fileChangedNotification @"fileChangedNotification"
 
 int VideoAddressCount = 0;
 unsigned long VideoAddress[20][1024*768];
@@ -71,9 +74,17 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(handleMultiTap:)];
     tapGesture.numberOfTapsRequired = 2;
+    tapGesture.numberOfTouchesRequired = 2;
     tapGesture.cancelsTouchesInView = NO;
     tapGesture.delaysTouchesBegan = NO;
     [self.view addGestureRecognizer:tapGesture];
+
+    UILongPressGestureRecognizer *pressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(handleLongPress:)];
+    pressGesture.numberOfTouchesRequired = 2;
+    pressGesture.cancelsTouchesInView = NO;
+    pressGesture.delaysTouchesBegan = NO;
+    [self.view addGestureRecognizer:pressGesture];
     
     /*
      UIPinchGestureRecognizer* pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self
@@ -90,11 +101,151 @@ SDL_uikitviewcontroller* sharedSDL_uikitviewcontroller = nil;
      [self.view addGestureRecognizer:gestureRecognizer];
      gestureRecognizer.cancelsTouchesInView = NO;  // this prevents the gesture recognizers to 'block' touches
      */
+    
+    [self watchFilesystem:TRUE];
 }
 
++(NSString *)applicationDocumentsDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    return basePath;
+}
+
+-(void)watchFilesystem:(BOOL)enable {
+    
+    NSString* docsDirectory = [SDL_uikitviewcontroller applicationDocumentsDirectory];
+    NSString* watchDirectory = [docsDirectory stringByAppendingPathComponent:@".openttd/save"];
+    
+    // Documents/.openttd/save
+    
+    // Get the path to the home directory
+    //NSString * homeDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    //NSString* watchDirectory = [[NSBundle mainBundle] resourcePath];
+    //watchDirectory = homeDirectory;
+    
+    // Create a new file descriptor - we need to convert the NSString to a char * i.e. C style string
+    int filedes = open([watchDirectory cStringUsingEncoding:NSASCIIStringEncoding], O_EVTONLY);
+    
+    // Create a dispatch queue - when a file changes the event will be sent to this queue
+    _dispatchQueue = dispatch_queue_create("FileMonitorQueue", 0);
+    
+    // Write covers - adding a file, renaming a file and deleting a file...
+    _source = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE,filedes,
+                                     DISPATCH_VNODE_WRITE,
+                                     _dispatchQueue);
+    
+    
+    // This block will be called when the file changes
+    dispatch_source_set_event_handler(_source, ^(){
+        // We call an NSNotification so the file can change can be detected anywhere
+        [[NSNotificationCenter defaultCenter] postNotificationName:fileChangedNotification object:Nil];
+    });
+    
+    // When we stop monitoring the file this will be called and it will close the file descriptor
+    dispatch_source_set_cancel_handler(_source, ^() {
+        close(filedes);
+    });
+    
+    // Start monitoring the file...
+    dispatch_resume(_source);
+    
+    //...
+    
+    // When we want to stop monitoring the file we call this
+    //dispatch_source_cancel(source);
+    
+    
+    // To recieve a notification about the file change we can use the NSNotificationCenter
+    [[NSNotificationCenter defaultCenter] addObserverForName:fileChangedNotification object:Nil queue:Nil usingBlock:^(NSNotification * notification) {
+        NSLog(@"File change detected!");
+        
+        [self handleFileSystemChanges:watchDirectory];
+    }];
+}
+
+-(void)handleFileSystemChanges:(NSString*)watchDirectory {
+    if ( [[DBAccountManager sharedManager] linkedAccount] && [DBFilesystem sharedFilesystem] ) {
+        DBPath *newPath = [[DBPath root] childPath:@"Sync.txt"];
+        DBFile *file = nil;
+        file = [[DBFilesystem sharedFilesystem] openFile:newPath error:nil];
+        if ( nil == file ) {
+            file = [[DBFilesystem sharedFilesystem] createFile:newPath error:nil];
+        }
+        
+        if ( nil != file ) {
+            [file writeString:[NSString stringWithFormat:@"%@", [NSDate date]] error:nil];
+        } else {
+            NSLog( @"DB SyncFile: Error");
+        }
+    
+        NSArray* files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:watchDirectory error:NULL];
+        for (NSString* fileName in files) {
+            DBPath *dbfileName = [[DBPath root] childPath:fileName];
+            DBError* error = nil;
+            DBFile *dbFile = [[DBFilesystem sharedFilesystem] openFile:dbfileName error:&error];
+            if ( nil == dbFile ) {
+                error = nil;
+                dbFile = [[DBFilesystem sharedFilesystem] createFile:dbfileName error:&error];
+                if ( nil != dbFile ) {
+                    NSLog( @"DB CreateFile: SUCCESS %@", @{@"File":dbfileName?dbfileName:@"Unknown"} );
+                }
+            } else {
+                NSLog( @"DB OpenFile: SUCCESS %@", @{@"File":dbfileName?dbfileName:@"Unknown"} );
+            }
+            
+            if ( nil != dbFile && nil == error ) {
+                NSString* fullFilePath = [watchDirectory stringByAppendingPathComponent:fileName];
+                
+                if ( [dbFile writeContentsOfFile:fullFilePath shouldSteal:false error:&error] ) {
+                    NSLog( @"DB WriteFile: SUCCESS" );
+                    NSLog( @"DB WriteFile: %@", @{@"File":dbfileName?dbfileName:@"Unknown"});
+                } else {
+                    NSLog( @"DB WriteFile: ERROR" );
+                    NSLog( @"DB WriteFile: %@", @{@"File":dbfileName?dbfileName:@"Unknown",@"Error":error?error:@"Unknown"});
+                }
+            } else {
+                NSLog( @"DB File: ERROR" );
+                NSLog( @"DB File: %@", @{@"File":dbfileName?dbfileName:@"Unknown",@"Error":error?error:@"Unknown"});
+            }
+        }
+    } else {
+        NSLog( @"DB Setup: ERROR" );
+    }
+}
 
 - (void)handlePinch:(UIGestureRecognizer *)gestureRecognizer {
 }
+
+- (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer {
+    NSLog( @"LongPress!");
+    
+    DBAccount* linkedAccount = [[DBAccountManager sharedManager] linkedAccount];
+    NSString* unlinkTitle = linkedAccount ? @"Unlink from Dropbox" : nil;
+    NSString* linkTitle = linkedAccount ? nil : @"Link to Dropbox";
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"OpenTTD Options"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:unlinkTitle
+                                                    otherButtonTitles:linkTitle, nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"The %@ button was tapped.", [actionSheet buttonTitleAtIndex:buttonIndex]);
+    
+    // Ignore the cancel button
+    if ( 0 == buttonIndex ) {
+        DBAccount* linkedAccount = [[DBAccountManager sharedManager] linkedAccount];
+        if ( nil != linkedAccount ) {
+            [linkedAccount unlink];
+        } else {
+            [[DBAccountManager sharedManager] linkFromController:self];
+        }
+    }
+}
+
 
 - (void)handleMultiTap:(UIGestureRecognizer *)gestureRecognizer {
     

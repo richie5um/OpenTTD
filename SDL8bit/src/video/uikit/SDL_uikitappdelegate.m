@@ -25,6 +25,7 @@
 #import "SDL_events_c.h"
 #import "jumphack.h"
 #import "SDL_uikitapplication.h"
+#import <Dropbox/Dropbox.h>
 
 #ifdef main
 #undef main
@@ -88,14 +89,48 @@ int main(int argc, char **argv) {
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-			
-	/* Set working directory to resource path */
-	[[NSFileManager defaultManager] changeCurrentDirectoryPath: [[NSBundle mainBundle] resourcePath]];
+
+    [self startOpenTTD];
+}
+
+- (BOOL)application:(UIApplication *)app didFinishLaunchingWithOptions:(NSDictionary *)opts {
+    DBAccountManager *accountManager = [[DBAccountManager alloc] initWithAppKey:@"khcfegr33z1c0r6" secret:@"yx87wluxyruepi0"];
+    [DBAccountManager setSharedManager:accountManager];
+    
+    [self startOpenTTD];
+    return YES;
+}
+
+-(void)startOpenTTD {
+    /* Set working directory to resource path */
+    [[NSFileManager defaultManager] changeCurrentDirectoryPath: [[NSBundle mainBundle] resourcePath]];
 	
-  [SDLUIKitDelegate sharedAppDelegate].window = SDLUIKitApp.window;
-  [SDLUIKitApp.window makeKeyAndVisible];
-  
-  [self performSelector:@selector(postFinishLaunch) withObject:nil afterDelay:0.0];
+    [SDLUIKitDelegate sharedAppDelegate].window = SDLUIKitApp.window;
+    [SDLUIKitApp.window makeKeyAndVisible];
+    
+    [self activateDBSync];
+    
+    [self performSelector:@selector(postFinishLaunch) withObject:nil afterDelay:0.0];
+}
+
+-(void)activateDBSync {
+    DBAccount *account = [[DBAccountManager sharedManager] linkedAccount];
+    if (account) {
+        DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
+        [DBFilesystem setSharedFilesystem:filesystem];
+    }
+}
+
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url sourceApplication:(NSString *)source annotation:(id)annotation {
+    DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
+    if (account) {
+        NSLog(@"App linked successfully!");
+        [self activateDBSync];
+        
+        return YES;
+    }
+    return NO;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

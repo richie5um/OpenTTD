@@ -26,8 +26,13 @@
 #include "SDL_mouse_c.h"
 #include "SDL_events.h"
 
-@interface SDL_uikitviewcontroller : UIViewController 
+@interface SDL_uikitviewcontroller : UIViewController <UIActionSheetDelegate>
 {
+    // Dispatch queue
+    dispatch_queue_t _dispatchQueue;
+    
+    // A source of potential notifications
+    dispatch_source_t _source;
 }
 
 @property (assign) BOOL zoomed;

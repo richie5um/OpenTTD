@@ -437,6 +437,11 @@
 		8CAAC1B81106FA2D00FED8E7 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAAC1B71106FA2D00FED8E7 /* MainWindow.xib */; };
 		8CAAC1FF1107DCCA00FED8E7 /* SDL_uikitapplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC1FE1107DCCA00FED8E7 /* SDL_uikitapplication.m */; };
 		BA67081619A04336001F2A3A /* RichS_Hack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA67081419A04336001F2A3A /* RichS_Hack.cpp */; };
+		BA92832019A800DC00C8AC36 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA92831F19A800DC00C8AC36 /* Dropbox.framework */; };
+		BA92832719A800F100C8AC36 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA92832619A800F100C8AC36 /* CFNetwork.framework */; };
+		BA92832919A800F900C8AC36 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA92832819A800F900C8AC36 /* Security.framework */; };
+		BA92832B19A8010400C8AC36 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA92832A19A8010300C8AC36 /* SystemConfiguration.framework */; };
+		BA92832D19A8011400C8AC36 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BA92832C19A8011400C8AC36 /* libc++.dylib */; };
 		CF2AFD7C141A4D9D001EE468 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFCB95F814178B3F00C68914 /* libpng.a */; };
 		CF2AFD83141A50AA001EE468 /* ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = CF2AFD82141A50AA001EE468 /* ios.mm */; };
 		CF8622CC1417BF7200DBBC68 /* libfreetype2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF8622C91417BEE500DBBC68 /* libfreetype2.a */; };
@@ -1628,6 +1633,11 @@
 		8D1107310486CEB800E47090 /* openttd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "openttd-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		BA67081419A04336001F2A3A /* RichS_Hack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RichS_Hack.cpp; sourceTree = "<group>"; };
 		BA67081519A04336001F2A3A /* RichS_Hack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichS_Hack.h; sourceTree = "<group>"; };
+		BA92831F19A800DC00C8AC36 /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Dropbox.framework; sourceTree = "<group>"; };
+		BA92832619A800F100C8AC36 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		BA92832819A800F900C8AC36 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		BA92832A19A8010300C8AC36 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		BA92832C19A8011400C8AC36 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		CF2AFD72141A454C001EE468 /* osx_stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osx_stdafx.h; sourceTree = "<group>"; };
 		CF2AFD82141A50AA001EE468 /* ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios.mm; sourceTree = "<group>"; };
 		CF8622C11417BEE400DBBC68 /* freetype2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = freetype2.xcodeproj; path = ../../../projects/freetype2/freetype2.xcodeproj; sourceTree = "<group>"; };
@@ -1642,14 +1652,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C6A820E10EAE4B40036B749 /* libz.dylib in Frameworks */,
+				BA92832D19A8011400C8AC36 /* libc++.dylib in Frameworks */,
+				BA92832B19A8010400C8AC36 /* SystemConfiguration.framework in Frameworks */,
+				BA92832919A800F900C8AC36 /* Security.framework in Frameworks */,
+				BA92832719A800F100C8AC36 /* CFNetwork.framework in Frameworks */,
 				CF2AFD7C141A4D9D001EE468 /* libpng.a in Frameworks */,
 				CF8622CC1417BF7200DBBC68 /* libfreetype2.a in Frameworks */,
 				CFA9E6F1140BD8540057E581 /* AudioToolbox.framework in Frameworks */,
+				BA92832019A800DC00C8AC36 /* Dropbox.framework in Frameworks */,
 				CFA9E6E5140BD11F0057E581 /* CoreAudio.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
-				8C6A820E10EAE4B40036B749 /* libz.dylib in Frameworks */,
 				8C6A821410EAE4E40036B749 /* OpenGLES.framework in Frameworks */,
 				8C6A821610EAE4E40036B749 /* QuartzCore.framework in Frameworks */,
 			);
@@ -1679,6 +1694,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				BA92831F19A800DC00C8AC36 /* Dropbox.framework */,
 				CF8622C11417BEE400DBBC68 /* freetype2.xcodeproj */,
 				CFCB95EB14178B3E00C68914 /* libpng.xcodeproj */,
 				8CAAC0B11106FA0C00FED8E7 /* Library Source */,
@@ -1725,6 +1741,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA92832C19A8011400C8AC36 /* libc++.dylib */,
+				BA92832A19A8010300C8AC36 /* SystemConfiguration.framework */,
+				BA92832819A800F900C8AC36 /* Security.framework */,
+				BA92832619A800F100C8AC36 /* CFNetwork.framework */,
 				CFA9E6F0140BD8540057E581 /* AudioToolbox.framework */,
 				CFA9E6EE140BD71D0057E581 /* AudioUnit.framework */,
 				CFA9E6E4140BD11F0057E581 /* CoreAudio.framework */,
@@ -3914,6 +3934,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
